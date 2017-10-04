@@ -1,10 +1,33 @@
+#include <iostream>
 #include<string>
 #include<vector>
 #include "bitmap.h"
 
-using namespace std
+using namespace std;
 
 int main (){
+
+
+
+
+
+Bitmap image;
+vector<vector <Pixel> > bmp;
+Pixel rgb;
+
+
+image.open("machupicchu.bmp");
+bmp= image.toPixelMatrix();
+
+
+cout <<"machupicchu.bmp has loaded. It is " << bmp[0].size()
+<< " pixels wide and " << bmp.size() <<" pixels tall."
+<<endl;
+
+
+
+
+
 
 
 /*
