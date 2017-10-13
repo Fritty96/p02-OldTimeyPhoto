@@ -8,56 +8,49 @@ using namespace std;
 int main (){
 
 
-
-
-
 Bitmap image;
 vector<vector <Pixel> > bmp;
 Pixel rgb;
+bool valid;
 
 
-image.open("machupicchu.bmp");
+
+do{
+    string userbmp;
+    cout << "Please enter bmp file name: ex- machupicchu.bmp " << endl;
+    cin >> userbmp;
+
+
+    image.open(userbmp);
+
+    valid = image.isImage();
+  
+}
+ 
+while (valid == false);
+
+
+if(valid == true){ 
+
 bmp= image.toPixelMatrix();
-
-
-cout <<"machupicchu.bmp has loaded. It is " << bmp[0].size()
-<< " pixels wide and " << bmp.size() <<" pixels tall."
-<<endl;
-
-
-
-
-
-
-
-/*
-Program Decompisition
-
-    Output Ask User for BMP Picture File
-        Store File if valid 
-        If not valid, tell user and reprompt
-
-
-    Convert User File into Matrix
     
-    Create Loop
-        Checks RGB of each Pixel And finds average
-        Change Value of RGB so each equals   
-        Store New Value and move onto next pixel
 
+    for (int row = 0; row < bmp.size(); row++){
+        for (int col = 0; col < bmp[row].size(); col++){
+
+        rgb = bmp[row][col];
+        int average = (rgb.red + rgb.blue + rgb.green)/3;
+        rgb.red = average;
+        rgb.green = average;
+        rgb.blue = average;
+        bmp[row][col] = rgb;
+
+        }
+    }
+image.fromPixelMatrix(bmp);
+image.save("oldtimey.bmp");
     
-    Save new updated bitmap
-
-
-
-
-*/
-
-
-
-
-
-
+}
 
 
 return 0;
